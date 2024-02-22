@@ -82,13 +82,12 @@ export const Allsong: Song[] = [
     },
     {
         id: 2,
-        cover: "https://i.scdn.co/image/ab67616d0000b2738c6b830c36c7b4ac43c3cee8",
-        title: "Downtown",
-        artist: "Anitta & J Balvin",
-        audio: "/MUSIC/02.mp3",
-        isTop: false,
+        cover: "https://i.scdn.co/image/ab67616d0000b273b0dd6a5cd1dec96c4119c262",
+        title: "One Of The Girls",
+        artist: "Jennie, Lily-Rose Melody Depp y The Weeknd",
+        audio: "/MUSIC/02.m4a",
+        isTop: true,
         isPopular: true
-
     },
     {
         id: 3,
@@ -284,11 +283,11 @@ export const Allsong: Song[] = [
     },
     {
         id: 24,
-        cover: "https://i.scdn.co/image/ab67616d0000b273b0dd6a5cd1dec96c4119c262",
-        title: "One Of The Girls",
-        artist: "Jennie, Lily-Rose Melody Depp y The Weeknd",
-        audio: "/MUSIC/24.m4a",
-        isTop: true,
+        cover: "https://i.scdn.co/image/ab67616d0000b2738c6b830c36c7b4ac43c3cee8",
+        title: "Downtown",
+        artist: "Anitta & J Balvin",
+        audio: "/MUSIC/24.mp3",
+        isTop: false,
         isPopular: true
     },
 ]
