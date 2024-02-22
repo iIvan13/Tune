@@ -2,12 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { fetchSongData } from "../utils/fetchSong";
 import { playerStore } from "../store/playMusic";
 import SongControl from "./SongControl";
-// import Loading from "./Loading";
+import Loading from "./Loading";
 
 function Player() {
   const [drop, setDrop] = useState(false);
-  const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } =
-    playerStore((state) => state);
+  const {
+    isPlaying,
+    setIsPlaying,
+    playingMusic,
+    setPlayingMusic,
+    isLoading,
+    setIsLoading,
+  } = playerStore((state) => state);
 
   const { songBg, songTitle, songArtist, songUri, nextPlay, typePlaylist } =
     playingMusic;
@@ -27,18 +33,33 @@ function Player() {
     }
   }, [playingMusic]);
 
+  useEffect(() => {
+    const handleCanPlay = () => {
+      setIsLoading(false);
+    };
+
+    audioRef.current.addEventListener("canplay", handleCanPlay);
+
+    return () => {
+      audioRef.current.removeEventListener("canplay", handleCanPlay);
+    };
+  }, []);
+
   const handleClick = () => {
     setIsPlaying(!isPlaying);
   };
 
   const fetchNextSong = async (offset) => {
     try {
+      setIsLoading(true);
+      setIsPlaying(false);
+
       const res = await fetchSongData({
         id: nextPlay + offset,
         lib: typePlaylist,
         searchById: false,
       });
-      setIsPlaying(true);
+
       const { id, cover, title, artist, audio } = res.song;
       setPlayingMusic({
         id,
@@ -49,6 +70,8 @@ function Player() {
         nextPlay: nextPlay + offset,
         typePlaylist: typePlaylist,
       });
+
+      setIsPlaying(true);
     } catch (error) {
       console.error("Error fetching next song:", error);
     }
@@ -88,8 +111,11 @@ function Player() {
           <button
             className="text-black cursor-pointer text-3xl"
             onClick={handleClick}>
-            {/* {loading && <Loading />} */}
-            <i className={isPlaying ? "ri-pause-line " : "ri-play-line"}></i>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <i className={isPlaying ? "ri-pause-line " : "ri-play-line"}></i>
+            )}
           </button>
 
           <button onClick={nextPlaySong}>

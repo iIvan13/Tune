@@ -4,8 +4,13 @@ import { fetchSongData } from "../utils/fetchSong";
 
 function CardSongPopular({ songId, cover, title, artist }) {
   const [like, setLike] = useState(false);
-  const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } =
-    playerStore();
+  const {
+    isPlaying,
+    setIsPlaying,
+    playingMusic,
+    setPlayingMusic,
+    setIsLoading,
+  } = playerStore();
 
   const isPlayingSong = isPlaying && playingMusic?.id === songId;
 
@@ -16,6 +21,8 @@ function CardSongPopular({ songId, cover, title, artist }) {
     }
 
     const playNewSong = async () => {
+      setIsLoading(true);
+      setIsPlaying(false);
       const res = await fetchSongData({
         id: songId,
         lib:
@@ -24,6 +31,7 @@ function CardSongPopular({ songId, cover, title, artist }) {
             : playingMusic.typePlaylist || "songsPopular",
         searchById: true,
       });
+
       setIsPlaying(true);
       const { id, cover, title, artist, audio, indexPlay } = res.song;
       setPlayingMusic({

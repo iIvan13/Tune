@@ -2,8 +2,13 @@ import { playerStore } from "../store/playMusic";
 import { fetchSongData } from "../utils/fetchSong";
 
 function CardPlay({ songId }) {
-  const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } =
-    playerStore((state) => state);
+  const {
+    isPlaying,
+    setIsPlaying,
+    playingMusic,
+    setPlayingMusic,
+    setIsLoading,
+  } = playerStore((state) => state);
 
   const isPlayingSong = isPlaying && playingMusic?.id === songId;
 
@@ -14,6 +19,8 @@ function CardPlay({ songId }) {
     }
 
     const playNewSong = async () => {
+      setIsLoading(true);
+      setIsPlaying(false);
       const res = await fetchSongData({
         id: songId,
         lib: playingMusic.typePlaylist || "songsTop",
