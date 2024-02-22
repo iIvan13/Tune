@@ -35,7 +35,7 @@ import CardSong from "./CardSong.astro";
     </div>
   </article>
   <article class="flex w-full py-4">
-    <ul class="carucel gap-8">
+    <ul class="carucel gap-8 overflow-x-auto">
       {
         songsTop.map((song) => {
           const { id, cover, title, artist } = song;
@@ -79,8 +79,8 @@ import CardSong from "./CardSong.astro";
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc((100% / 3)-12px);
-    overflow: hidden;
     scroll-behavior: smooth;
+    padding-bottom: 1rem;
   }
 </style>
 

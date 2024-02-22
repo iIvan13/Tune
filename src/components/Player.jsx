@@ -63,7 +63,7 @@ function Player() {
   return (
     <footer
       className={`flex items-center gap-4 ${dropActive} justify-around fixed bottom-0 w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 w-[250px]">
         <img
           src={songBg}
           alt=""
