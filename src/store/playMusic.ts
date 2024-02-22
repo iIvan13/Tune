@@ -6,8 +6,8 @@ interface PlayingMusic {
   songTitle: string;
   songArtist: string;
   songUri: string;
-  // nextPlay?: number
-  // typePlaylist: string
+  nextPlay?: number
+  typePlaylist: string
 }
 
 interface PlayerStore {
@@ -28,8 +28,8 @@ export const playerStore = create<PlayerStore>((set) => ({
     songTitle: "I Wanna Be Yours",
     songArtist: "Artic Monkeys",
     songUri: "/MUSIC/01.mp3",
-    // nextPlay: 1,
-    // typePlaylist: null
+    nextPlay: 2,
+    typePlaylist: "songsTop"
   },
   setPlayingMusic: (playingMusic) => set({ playingMusic }),
   loading: false,
