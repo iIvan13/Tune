@@ -74,7 +74,7 @@ function Player() {
       setIsPlaying(true);
     } catch (error) {
       console.error("Error fetching next song:", error);
-      setLoading(false);
+      setIsLoading(false)
     }
   };
 
