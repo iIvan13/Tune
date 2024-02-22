@@ -4,7 +4,8 @@ import { fetchSongData } from "../utils/fetchSong";
 
 function CardSongPopular({ songId, cover, title, artist }) {
   const [like, setLike] = useState(false);
-  const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } = playerStore();
+  const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } =
+    playerStore();
 
   const isPlayingSong = isPlaying && playingMusic?.id === songId;
 
@@ -17,7 +18,10 @@ function CardSongPopular({ songId, cover, title, artist }) {
     const playNewSong = async () => {
       const res = await fetchSongData({
         id: songId,
-        lib: playingMusic.typePlaylist || "songsPopular",
+        lib:
+          playingMusic.typePlaylist === "songsTop"
+            ? "songsPopular"
+            : playingMusic.typePlaylist || "songsPopular",
         searchById: true,
       });
       setIsPlaying(true);
