@@ -28,7 +28,7 @@ function CardSongPopular({ songId, cover, title, artist }) {
         songTitle: title,
         songArtist: artist,
         songUri: audio,
-        nextPlay: indexPlay + 1,
+        nextPlay: indexPlay,
         typePlaylist: "songsPopular",
       });
     };

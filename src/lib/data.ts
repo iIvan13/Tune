@@ -1,4 +1,3 @@
-import type Index from "../pages/index.astro";
 
 interface Albums {
     id: number;

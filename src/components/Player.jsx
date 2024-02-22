@@ -9,7 +9,8 @@ function Player() {
   const { isPlaying, setIsPlaying, playingMusic, setPlayingMusic } =
     playerStore((state) => state);
 
-  const { songBg, songTitle, songArtist, songUri } = playingMusic;
+  const { songBg, songTitle, songArtist, songUri, nextPlay, typePlaylist } =
+    playingMusic;
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -30,11 +31,11 @@ function Player() {
     setIsPlaying(!isPlaying);
   };
 
-  const nextSong = async () => {
+  const fetchNextSong = async (offset) => {
     try {
       const res = await fetchSongData({
-        id: playingMusic.nextPlay,
-        lib: playingMusic.typePlaylist,
+        id: nextPlay + offset,
+        lib: typePlaylist,
         searchById: false,
       });
       setIsPlaying(true);
@@ -45,13 +46,17 @@ function Player() {
         songTitle: title,
         songArtist: artist,
         songUri: audio,
-        nextPlay: playingMusic.nextPlay + 1,
-        typePlaylist: playingMusic.typePlaylist,
+        nextPlay: nextPlay + offset,
+        typePlaylist: typePlaylist,
       });
     } catch (error) {
       console.error("Error fetching next song:", error);
     }
   };
+
+  const audioEnd = () => fetchNextSong(1);
+  const beforePlay = () => fetchNextSong(-1);
+  const nextPlaySong = () => fetchNextSong(1);
 
   const dropActive = drop ? "h-screen" : "min-h-[50px]";
 
@@ -76,7 +81,7 @@ function Player() {
 
       <div className="flex gap-6 items-center justify-between">
         <div className="text-4xl flex gap-2 items-center md:w-32">
-          <button>
+          <button onClick={beforePlay}>
             <i className="ri-skip-left-fill cursor-pointer"></i>
           </button>
 
@@ -87,9 +92,11 @@ function Player() {
             <i className={isPlaying ? "ri-pause-line " : "ri-play-line"}></i>
           </button>
 
-          <i className="ri-skip-right-fill cursor-pointer"></i>
+          <button onClick={nextPlaySong}>
+            <i className="ri-skip-right-fill cursor-pointer"></i>
+          </button>
 
-          <audio ref={audioRef} onEnded={nextSong}></audio>
+          <audio ref={audioRef} onEnded={audioEnd}></audio>
         </div>
 
         <SongControl audio={audioRef} />

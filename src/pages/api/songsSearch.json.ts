@@ -29,7 +29,6 @@ const librarySearch = (lib: string): Song[] | undefined => {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const requestData: RequestData = await request.json()
-    console.log(requestData)
     const library = requestData.lib
     const isById = requestData.searchById
     const identifier = requestData.id

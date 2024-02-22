@@ -27,7 +27,7 @@ function CardPlay({ songId }) {
         songTitle: title,
         songArtist: artist,
         songUri: audio,
-        nextPlay: indexPlay + 1,
+        nextPlay: indexPlay,
         typePlaylist: "songsTop",
       });
     };
