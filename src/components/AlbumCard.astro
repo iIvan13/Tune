@@ -1,0 +1,31 @@
+---
+interface Props {
+  cover: string;
+  title: string;
+  id: number;
+}
+const { cover, title, id } = Astro.props;
+---
+
+<a href={`/albums/${id}`}>
+  <div class="mt-4 pl-4 relative">
+    <picture class="flex relative items-center">
+      <img
+        src={cover}
+        alt="fgergeee ergg"
+        class="w-60 rounded-md"
+        transition:name={`${title}-image`}
+      />
+      <img
+        src="/disc.png"
+        alt=""
+        class="w-60 absolute -z-50 left-[110px] drop-shadow-2xl"
+      />
+    </picture>
+    <h3
+      class="text-lg font-semibold truncate ... w-60 mt-1"
+      transition:name={`${title}-title`}>
+      {title}
+    </h3>
+  </div>
+</a>

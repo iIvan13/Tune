@@ -1,0 +1,61 @@
+<aside
+  class="hidden md:flex flex-col bg-white p-4 rounded-md max-w-[500px] min-w-[250px] max-h-[600px] shadow-lg"
+  id="menu-toggle">
+  <header class="flex flex-col items-center text-center gap-2 mb-6">
+    <img src="/profile.jpeg" alt="User avatar" class="rounded-full w-16 h-16" />
+    <div class="w-full">
+      <h2 class="text-base font-semibold">Ivan</h2>
+      <p class="text-blue-600 text-sm truncate">ivandev2oo6@gmail.com</p>
+    </div>
+  </header>
+  <nav>
+    <div>
+      <h2 class="text-lg font-semibold">Browse</h2>
+      <ul
+        class="py-4 px-2 flex flex-col gap-4 text-zinc-600/80 font-semibold text-sm">
+        <li class="text-zinc-900/90 relative cursor-pointer">
+          <div
+            class="absolute bg-blue-600 rounded-xl w-[2.5px] h-[15px] z-50 left-[23px] active-nav">
+          </div>
+          <i class="ri-home-5-line pr-4"></i>
+          <span class="max-[200px]:hidden">Home</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-play-list-line pr-4"></i>
+          <span class="max-[200px]:hidden">Playlist</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-user-line pr-4"></i>
+          <span class="max-[200px]:hidden">Artist</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-folder-5-line pr-4"></i>
+          <span class="max-[200px]:hidden">Albums</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-lg font-semibold">Discover</h2>
+      <ul
+        class="py-4 px-2 flex flex-col gap-4 text-zinc-600/80 font-semibold text-sm">
+        <li class="cursor-pointer">
+          <i class="ri-rfid-line pr-4"></i>
+          <span class="max-[200px]:hidden">Radio</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-calendar-event-fill pr-4"></i>
+          <span class="max-[200px]:hidden">Event</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-mic-line pr-4"></i>
+          <span class="max-[200px]:hidden">Podcast</span>
+        </li>
+        <li class="cursor-pointer">
+          <i class="ri-heart-line pr-4"></i>
+          <span class="max-[200px]:hidden">For you</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</aside>
