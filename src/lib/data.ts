@@ -282,6 +282,15 @@ export const Allsong: Song[] = [
         isTop: true,
         isPopular: true
     },
+    {
+        id: 24,
+        cover: "https://i.scdn.co/image/ab67616d0000b273b0dd6a5cd1dec96c4119c262",
+        title: "One Of The Girls",
+        artist: "Jennie, Lily-Rose Melody Depp y The Weeknd",
+        audio: "/MUSIC/24.mp3",
+        isTop: true,
+        isPopular: true
+    },
 ]
 
 
