@@ -74,6 +74,7 @@ function Player() {
       setIsPlaying(true);
     } catch (error) {
       console.error("Error fetching next song:", error);
+      setLoading(false);
     }
   };
 
@@ -81,11 +82,11 @@ function Player() {
   const beforePlay = () => fetchNextSong(-1);
   const nextPlaySong = () => fetchNextSong(1);
 
-  const dropActive = drop ? "h-screen" : "min-h-[50px]";
+  // const dropActive = drop ? "h-screen" : "min-h-[50px]";
 
   return (
     <footer
-      className={`flex items-center gap-4 ${dropActive} justify-around fixed bottom-0 w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
+      className={`flex items-center gap-4 justify-around fixed bottom-0 w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
       <div className="flex items-center gap-2 w-[250px]">
         <img
           src={songBg}
@@ -104,12 +105,12 @@ function Player() {
 
       <div className="flex gap-6 items-center justify-between">
         <div className="text-4xl flex gap-2 items-center md:w-32">
-          <button onClick={beforePlay}>
-            <i className="ri-skip-left-fill cursor-pointer"></i>
+          <button onClick={beforePlay} className="flex items-center">
+            <i className="ri-skip-left-fill  cursor-pointer"></i>
           </button>
 
           <button
-            className="text-black cursor-pointer text-3xl"
+            className="text-black cursor-pointer text-[28px] w-7 pl-[0.5px] flex items-center"
             onClick={handleClick}>
             {isLoading ? (
               <Loading />
@@ -118,7 +119,7 @@ function Player() {
             )}
           </button>
 
-          <button onClick={nextPlaySong}>
+          <button onClick={nextPlaySong} className="flex items-center">
             <i className="ri-skip-right-fill cursor-pointer"></i>
           </button>
 
@@ -130,7 +131,7 @@ function Player() {
 
       <button
         onClick={() => setDrop(!drop)}
-        className="hidden text-xl md:text-2xl rounded-full h-5 md:h-6 text-white bg-blue-600 items-center absolute top-[-10px] right-6 md:bg-transparent md:text-black md:static
+        className=" text-xl md:text-2xl rounded-full h-5 md:h-6 text-white bg-blue-600 items-center absolute top-[-10px] right-6 md:bg-transparent md:text-black md:static
       ">
         <i className="ri-arrow-up-s-line"></i>
       </button>
