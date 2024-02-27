@@ -1,8 +1,8 @@
 export const Play = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "50" : small ? "30" : "35"}
-      height={lg ? "50" : small ? "30" : "35"}
+      width={lg ? "55" : small ? "30" : "35"}
+      height={lg ? "55" : small ? "30" : "35"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -19,8 +19,8 @@ export const Play = ({ lg, small }) => {
 export const Pause = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "50" : small ? "30" : "35"}
-      height={lg ? "50" : small ? "30" : "35"}
+      width={lg ? "55" : small ? "30" : "35"}
+      height={lg ? "55" : small ? "30" : "35"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -37,8 +37,8 @@ export const PlayTrackPrev = ({ lg, small }) => {
   return (
     <svg
       className="bg-transparent"
-      width={lg ? "40" : small ? "20" : "25"}
-      height={lg ? "40" : small ? "20" : "25"}
+      width={lg ? "45" : small ? "20" : "25"}
+      height={lg ? "45" : small ? "20" : "25"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -54,8 +54,8 @@ export const PlayTrackPrev = ({ lg, small }) => {
 export const PlayTrackNext = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "40" : small ? "20" : "25"}
-      height={lg ? "40" : small ? "20" : "25"}
+      width={lg ? "45" : small ? "20" : "25"}
+      height={lg ? "45" : small ? "20" : "25"}
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
@@ -72,8 +72,8 @@ export function Loading({ lg, small }) {
   return (
     <svg
       aria-hidden="true"
-      className={`${lg ? "w-[40px]" : small ? "w-[20px]" : "w-[35px]"} ${
-        lg ? "h-[40px]" : small ? "h-[20px]" : "h-[35px]"
+      className={`${lg ? "w-[55px]" : small ? "w-[20px]" : "w-[35px]"} ${
+        lg ? "h-[55px]" : small ? "h-[20px]" : "h-[35px]"
       } text-gray-100 animate-spin fill-blue-600`}
       viewBox="0 0 100 101"
       fill="none"
