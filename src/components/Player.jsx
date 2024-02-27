@@ -84,7 +84,7 @@ function Player() {
   const endSong = () => fetchNextSong(1);
 
   const classPlayer = {
-    screen: "min-h-screen flex-col justify-between",
+    screen: "h-screen flex-col justify-between pt-10",
     controlAll: "flex-col  w-full flex justify-center",
     control: "block w-full",
   };
@@ -93,7 +93,7 @@ function Player() {
     <footer
       className={`flex gap-4 ${
         drop ? classPlayer.screen : "justify-around"
-      } fixed bottom-0 w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
+      } bottom-0 fixed w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
       {!drop ? (
         <div className="flex items-center gap-2 w-[250px]">
           <img
