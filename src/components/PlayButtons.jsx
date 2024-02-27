@@ -1,8 +1,8 @@
 export const Play = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "40" : small ? "30" : "35"}
-      height={lg ? "40" : small ? "30" : "35"}
+      width={lg ? "50" : small ? "30" : "35"}
+      height={lg ? "50" : small ? "30" : "35"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -19,8 +19,8 @@ export const Play = ({ lg, small }) => {
 export const Pause = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "40" : small ? "30" : "35"}
-      height={lg ? "40" : small ? "30" : "35"}
+      width={lg ? "50" : small ? "30" : "35"}
+      height={lg ? "50" : small ? "30" : "35"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -37,8 +37,8 @@ export const PlayTrackPrev = ({ lg, small }) => {
   return (
     <svg
       className="bg-transparent"
-      width={lg ? "30" : small ? "20" : "25"}
-      height={lg ? "30" : small ? "20" : "25"}
+      width={lg ? "40" : small ? "20" : "25"}
+      height={lg ? "40" : small ? "20" : "25"}
       fill="none"
       stroke="currentColor"
       stroke-linecap="round"
@@ -54,8 +54,8 @@ export const PlayTrackPrev = ({ lg, small }) => {
 export const PlayTrackNext = ({ lg, small }) => {
   return (
     <svg
-      width={lg ? "30" : small ? "20" : "25"}
-      height={lg ? "30" : small ? "20" : "25"}
+      width={lg ? "40" : small ? "20" : "25"}
+      height={lg ? "40" : small ? "20" : "25"}
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
