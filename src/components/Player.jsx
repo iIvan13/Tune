@@ -105,7 +105,7 @@ function Player() {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="flex flex-col justify-center flex-1">
           <header>
             <button
               className="text-3xl font-medium grid place-content-center hover:text-blue-600 hover:scale-125 transition duration-300 rounded-full"
