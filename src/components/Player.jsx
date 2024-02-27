@@ -11,8 +11,8 @@ function Player() {
     setIsPlaying,
     playingMusic,
     setPlayingMusic,
-    loading,
-    setLoading,
+    isLoading,
+    setIsLoading,
   } = playerStore((state) => state);
 
   const { songBg, songTitle, songArtist, songUri, nextPlay, typePlaylist } =
@@ -36,7 +36,7 @@ function Player() {
 
   useEffect(() => {
     const handleCanPlay = () => {
-      setLoading(false);
+      setIsLoading(false);
     };
 
     audioRef.current.addEventListener("canplay", handleCanPlay);
@@ -52,7 +52,7 @@ function Player() {
 
   const fetchNextSong = async (offset) => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       setIsPlaying(false);
 
       const res = await fetchSongData({
@@ -75,7 +75,7 @@ function Player() {
       setIsPlaying(true);
     } catch (error) {
       console.error(error);
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -159,7 +159,7 @@ function Player() {
               drop ? "text-[36px]" : ""
             } w-7 flex items-center`}
             onClick={handleClick}>
-            {loading ? (
+            {isLoading ? (
               <Loading />
             ) : (
               <i className={isPlaying ? "ri-pause-line " : "ri-play-line"}></i>
