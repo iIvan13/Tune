@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const SongControl = ({ audio }) => {
+const SongControl = ({ audio, classRange }) => {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
@@ -32,15 +32,20 @@ const SongControl = ({ audio }) => {
     typeof duration === "number" && !isNaN(duration) ? duration : 0;
 
   return (
-    <div className=" w-[500px] items-center gap-4 hidden lg:flex">
-      <span className="w-8">{formatTime(currentTime)}</span>
+    <div
+      className={`w-full md:w-[350px] lg:w-[500px] items-center gap-4 flex relative ${
+        classRange ? "h-[30px] pb-32" : ""
+      }`}>
+      <span className={`w-8 ${classRange ? "absolute top-5" : ""}`}>
+        {formatTime(currentTime)}
+      </span>
       <input
         type="range"
         value={currentTime}
         max={result}
         min={0}
-        onChange={(event) => {
-          const newCurrentTime = event.target.value;
+        onChange={(e) => {
+          const newCurrentTime = e.target.value;
           audio.current.currentTime = newCurrentTime;
         }}
         className="w-full h-full appearance-none flex items-center cursor-pointer bg-transparent z-30
@@ -50,7 +55,9 @@ const SongControl = ({ audio }) => {
         [&::-webkit-slider-runnable-track]:bg-blue-100 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:overflow-hidden [&::-moz-range-track]:bg-blue-100 [&::-moz-range-track]:rounded-full [&::-ms-track]:bg-blue-100 [&::-ms-track]:rounded-full
         [&::-moz-range-progress]:bg-blue-400  [&::-moz-range-progress]:rounded-full [&::-ms-fill-lower]:bg-blue-400  [&::-ms-fill-lower]:rounded-full [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#4e97ff]"
       />
-      <span className="w-8">{duration ? formatTime(duration) : "00:00"}</span>
+      <span className={`w-8 ${classRange ? "absolute top-5 right-2" : ""}`}>
+        {duration ? formatTime(duration) : "00:00"}
+      </span>
     </div>
   );
 };
