@@ -84,7 +84,7 @@ function Player() {
   const endSong = () => fetchNextSong(1);
 
   const classPlayer = {
-    screen: "h-screen flex-col justify-between pt-10",
+    screen: "h-screen flex-col justify-between",
     controlAll: "flex-col  w-full flex justify-center",
     control: "block w-full",
   };
