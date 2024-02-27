@@ -84,8 +84,8 @@ function Player() {
   const endSong = () => fetchNextSong(1);
 
   const classPlayer = {
-    screen: "min-h-full flex-col justify-between",
-    controlAll: "flex-col",
+    screen: "min-h-screen flex-col justify-between",
+    controlAll: "flex-col  w-full flex justify-center",
     control: "block w-full",
   };
 
@@ -125,7 +125,7 @@ function Player() {
                 <img
                   src={songBg}
                   alt={songTitle}
-                  className="rounded-full w-full max-w-[400px]"
+                  className="rounded-xl w-full max-w-[400px]"
                 />
               </div>
 
