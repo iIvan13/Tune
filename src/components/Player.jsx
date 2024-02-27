@@ -2,7 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { fetchSongData } from "../utils/fetchSong";
 import { playerStore } from "../store/playMusic";
 import SongControl from "./SongControl";
-import Loading from "./Loading";
+import {
+  PlayTrackPrev,
+  PlayTrackNext,
+  Loading,
+  Play,
+  Pause,
+} from "./PlayButtons";
+
+const classPlayer = {
+  screen: " h-screen flex-col justify-between ",
+  controlAll: "flex-col",
+  control: "block w-full",
+};
 
 function Player() {
   const [drop, setDrop] = useState(false);
@@ -24,31 +36,21 @@ function Player() {
   }, [isPlaying]);
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef.current && songUri !== audioRef.current.src) {
       audioRef.current.src = songUri;
-      if (isPlaying) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
-      }
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
     }
-  }, [playingMusic]);
+  }, [songUri]);
 
   useEffect(() => {
-    const handleCanPlay = () => {
-      setIsLoading(false);
-    };
-
+    const handleCanPlay = () => setIsLoading(false);
     audioRef.current.addEventListener("canplay", handleCanPlay);
-
     return () => {
       audioRef.current.removeEventListener("canplay", handleCanPlay);
     };
   }, []);
 
-  const handleClick = () => {
-    setIsPlaying(!isPlaying);
-  };
+  const handleClick = () => setIsPlaying(!isPlaying);
 
   const fetchNextSong = async (offset) => {
     try {
@@ -79,21 +81,13 @@ function Player() {
     }
   };
 
-  const beforeSong = () => fetchNextSong(-1);
-  const nextSong = () => fetchNextSong(1);
   const endSong = () => fetchNextSong(1);
-
-  const classPlayer = {
-    screen: "h-screen flex-col justify-between",
-    controlAll: "flex-col  w-full flex justify-center",
-    control: "block w-full",
-  };
 
   return (
     <footer
       className={`flex gap-4 ${
         drop ? classPlayer.screen : "justify-around"
-      } bottom-0 fixed w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
+      } fixed bottom-0 w-full py-4 px-6 md:px-10 bg-[#FFFFFF] shadow-2xl shadow-blue-950`}>
       {!drop ? (
         <div className="flex items-center gap-2 w-[250px]">
           <img
@@ -112,24 +106,20 @@ function Player() {
         </div>
       ) : (
         <div>
-          <header className="pb-5">
+          <header>
             <button
-              className="text-3xl w-9 h-9 font-medium grid place-content-center hover:text-blue-600 hover:scale-125 transition duration-300 rounded-full"
+              className="text-3xl font-medium grid place-content-center hover:text-blue-600 hover:scale-125 transition duration-300 rounded-full"
               onClick={() => setDrop(!drop)}>
-              <i class="ri-arrow-left-s-line"></i>
+              <i className="ri-arrow-left-s-line"></i>
             </button>
           </header>
-          <section>
+          <section className="mt-4">
             <article>
-              <div className="w-full flex justify-center">
-                <img
-                  src={songBg}
-                  alt={songTitle}
-                  className="rounded-xl w-full max-w-[400px]"
-                />
+              <div className="max-w-[400px]">
+                <img src={songBg} alt={songTitle} className="rounded-xl" />
               </div>
 
-              <div className="mt-5 w-full items-center flex flex-col">
+              <div className="mt-5">
                 <h3 className="text-2xl font-semibold truncate ... overflow-hidden">
                   {songTitle}
                 </h3>
@@ -147,27 +137,27 @@ function Player() {
           drop ? classPlayer.controlAll : ""
         }`}>
         <div
-          className={`text-4xl grid gap-2 place-content-center grid-flow-col w-32 ${
-            drop ? " mt-6 text-5xl top-[30%] absolute z-50" : ""
+          className={`text-4xl grid gap-2 place-content-center grid-flow-col w-fit ${
+            drop ? "pl-2 bottom-5 absolute z-50" : ""
           }`}>
-          <button onClick={beforeSong} className="flex items-center">
-            <i className="ri-skip-left-fill cursor-pointer"></i>
+          <button onClick={() => fetchNextSong(-1)}>
+            <PlayTrackPrev />
           </button>
 
           <button
-            className={`text-black cursor-pointer text-[28px] ${
-              drop ? "text-[36px]" : ""
-            } w-7 flex items-center`}
+            className="text-black cursor-pointer w-fit"
             onClick={handleClick}>
             {isLoading ? (
-              <Loading />
+              <Loading lg={drop ?? true} />
+            ) : isPlaying ? (
+              <Play lg={drop ?? true} />
             ) : (
-              <i className={isPlaying ? "ri-pause-line " : "ri-play-line"}></i>
+              <Pause lg={drop ?? true} />
             )}
           </button>
 
-          <button onClick={nextSong} className="flex items-center">
-            <i className="ri-skip-right-fill cursor-pointer"></i>
+          <button onClick={() => fetchNextSong(1)}>
+            <PlayTrackNext />
           </button>
 
           <audio ref={audioRef} onEnded={endSong}></audio>
@@ -180,7 +170,7 @@ function Player() {
 
       <button
         onClick={() => setDrop(!drop)}
-        className={`text-xl rounded-full h-5 pt-[1px] flex text-white bg-blue-600 items-center absolute top-[-10px] right-6 md:hidden ${
+        className={`text-xl rounded-full h-5 pt-[1px] flex text-white bg-blue-600 items-center absolute top-[-10px] right-6 ${
           drop ? "hidden" : ""
         }`}>
         <i className="ri-arrow-up-s-line"></i>
