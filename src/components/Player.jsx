@@ -5,7 +5,7 @@ import SongControl from "./SongControl";
 import Loading from "./Loading";
 
 function Player() {
-  const [drop, setDrop] = useState(true);
+  const [drop, setDrop] = useState(false);
   const {
     isPlaying,
     setIsPlaying,
