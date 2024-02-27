@@ -112,7 +112,7 @@ function Player() {
         </div>
       ) : (
         <div>
-          <header className="pb-[20%]">
+          <header className="pb-5">
             <button
               className="text-3xl w-9 h-9 font-medium grid place-content-center hover:text-blue-600 hover:scale-125 transition duration-300 rounded-full"
               onClick={() => setDrop(!drop)}>
