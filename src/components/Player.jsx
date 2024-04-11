@@ -170,7 +170,7 @@ function Player() {
 
       <button
         onClick={() => setDrop(!drop)}
-        className={`text-xl rounded-full h-5 pt-[1px] flex text-white bg-blue-600 items-center absolute top-[-10px] right-6 ${
+        className={`md:hidden text-xl rounded-full h-5 pt-[1px] flex text-white bg-blue-600 items-center absolute top-[-10px] right-6 ${
           drop ? "hidden" : ""
         }`}>
         <i className="ri-arrow-up-s-line"></i>

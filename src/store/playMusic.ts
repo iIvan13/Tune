@@ -30,7 +30,7 @@ export const playerStore = create<PlayerStore>((set) => ({
     songTitle: "I Wanna Be Yours",
     songArtist: "Artic Monkeys",
     songUri: "/MUSIC/01.mp3",
-    nextPlay: 2,
+    nextPlay: 1,
     typePlaylist: "songsTop"
   },
   setPlayingMusic: (playingMusic) => set({ playingMusic }),
